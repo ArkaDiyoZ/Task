@@ -98,7 +98,7 @@
 							<!--Insert your DB configuration-->
 							<jdbc>
 								<driver>org.postgresql.Driver</driver>
-								<url>jdbc:postgresql://localhost:5432/cars_test</url>
+								<url>jdbc:postgresql://localhost:5432/carstest</url>
 								<user>test</user>
 								<password>12345678</password>
 							</jdbc>
