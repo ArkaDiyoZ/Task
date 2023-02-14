@@ -1,23 +1,26 @@
 package com.example.testtask.controllers
 
+import com.example.testtask.dto.CarDto
 import com.tej.JooQDemo.jooq.sample.model.Tables
 import jakarta.servlet.http.HttpServletResponse
 import jakarta.servlet.http.HttpServletResponse.SC_NOT_FOUND
 import org.jooq.DSLContext
-import org.jooq.impl.DSL
-import org.jooq.impl.QOM
-import org.jooq.impl.QOM.JSONObject
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 
 
 @RestController
 @RequestMapping("/cars")
-class CarController(private val DSLContext: DSLContext) {
+class CarController(
+    @Autowired
+    private val DSLContext: DSLContext,
+    private val KafkaControl: KafkaController
+    ) {
 
     @GetMapping("/{id}")
     fun getCarInfo(@PathVariable("id") id: Int, response: HttpServletResponse): Any? {
         try {
-            return DSLContext
+            val carStr = DSLContext
             .select()
             .from(Tables.CARS)
             .innerJoin(Tables.TYPES)
@@ -28,6 +31,8 @@ class CarController(private val DSLContext: DSLContext) {
             .on(Tables.MARKS.MODEL_ID.eq(Tables.MODELS.MODEL_ID))
             .where(Tables.CARS.CAR_ID.eq(id))
             .fetchInto(CarDto::class.java)[0]
+            KafkaControl.produceMessage(carStr.toString())
+            return carStr
         } catch (e: Exception){
             if (Exception::class.java.isAssignableFrom(e::class.java)){
                 response.status = SC_NOT_FOUND
