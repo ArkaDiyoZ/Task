@@ -1,4 +1,4 @@
-package com.example.testtask
+package com.avto.task
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

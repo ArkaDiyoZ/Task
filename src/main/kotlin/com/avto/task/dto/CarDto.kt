@@ -1,4 +1,4 @@
-package com.example.testtask.dto
+package com.avto.task.dto
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import java.io.Serial
 

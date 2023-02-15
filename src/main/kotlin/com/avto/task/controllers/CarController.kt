@@ -1,6 +1,6 @@
-package com.example.testtask.controllers
+package com.avto.task.controllers
 
-import com.example.testtask.dto.CarDto
+import com.avto.task.dto.CarDto
 import com.tej.JooQDemo.jooq.sample.model.Tables
 import jakarta.servlet.http.HttpServletResponse
 import jakarta.servlet.http.HttpServletResponse.SC_NOT_FOUND
