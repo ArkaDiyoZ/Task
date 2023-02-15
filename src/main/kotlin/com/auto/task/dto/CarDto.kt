@@ -1,24 +1,24 @@
-package com.avto.task.dto
+package com.auto.task.dto
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import java.io.Serial
 
-
-
-class CarDto{
-     var carId: Int? = null
-     var carGosNum: String? = null
-     var markName: String? = null
-     var modelName: String? = null
-     var modelHp: Int? = null
-     var modelEngineType: String? = null
-     var modelEngineVolume: Float? = null
-     var modelTransmissionType: String? = null
-     var modelSteeringWheel: String? = null
-     var equipmentType: String? = null
+class CarDto(
+     val carId: Int,
+     val carGosNum: String,
+     val markName: String,
+     val modelName: String,
+     val modelHp: Int,
+     val modelEngineType: String,
+     val modelEngineVolume: Float,
+     val modelTransmissionType: String,
+     val modelSteeringWheel: String,
+     val equipmentType: String,
+     val typeName: String
+){
 
 
      override fun toString(): String {
-          var strStart: StringBuilder = java.lang.StringBuilder("Cars (")
+          val strStart: StringBuilder = java.lang.StringBuilder("Cars (")
 
           strStart.append(carId);
           strStart.append(", ").append(carGosNum);
@@ -30,6 +30,8 @@ class CarDto{
           strStart.append(", ").append(modelTransmissionType);
           strStart.append(", ").append(modelSteeringWheel);
           strStart.append(", ").append(equipmentType);
+          strStart.append(", ").append(typeName);
+
 
           strStart.append(")");
           return strStart.toString();

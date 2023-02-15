@@ -1,4 +1,4 @@
-package com.avto.task
+package com.auto.task
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
