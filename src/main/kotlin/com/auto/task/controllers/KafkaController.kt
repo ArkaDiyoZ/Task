@@ -1,5 +1,5 @@
-package com.example.testtask.controllers
-import com.example.testtask.dto.CarDto
+package com.auto.task.controllers
+import com.auto.task.dto.CarDto
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.apache.kafka.clients.producer.RecordMetadata
