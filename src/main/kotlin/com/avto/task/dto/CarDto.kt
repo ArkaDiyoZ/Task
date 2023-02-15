@@ -23,6 +23,7 @@ class CarDto{
           strStart.append(carId);
           strStart.append(", ").append(carGosNum);
           strStart.append(", ").append(markName);
+          strStart.append(", ").append(modelName);
           strStart.append(", ").append(modelHp);
           strStart.append(", ").append(modelEngineType);
           strStart.append(", ").append(modelEngineVolume);
