@@ -16,7 +16,7 @@ import kotlin.math.log
 @RestController
 @RequestMapping("/cars")
 class CarController(
-    @Autowired
+    @Autowired // тут autowired не нужен, так как свойства описаны в конструкторе
     private val DSLContext: DSLContext,
     private val KafkaControl: KafkaController
     ) {
@@ -26,6 +26,8 @@ class CarController(
     @GetMapping("/{id}")
     fun getCarInfo(@PathVariable("id") id: Int, response: HttpServletResponse): CarDto? {
 
+        // вся бизнес логика описана в финкции контролера -  плохая архитектура
+        // нужно все таки разделить на слои в приложении.
         val carStr = DSLContext
             .select(Tables.CARS.CAR_ID, Tables.CARS.CAR_GOS_NUM,
             Tables.MARKS.MARK_NAME,Tables.MODELS.MODEL_NAME,
@@ -34,11 +36,11 @@ class CarController(
             Tables.MODELS.MODEL_STEERING_WHEEL, Tables.MODELS.EQUIPMENT_TYPE,
             Tables.TYPES.TYPE_NAME)
             .from(Tables.CARS)
-            .innerJoin(Tables.TYPES)
+            .innerJoin(Tables.TYPES) // тут действительно нужен inner join?
             .on(Tables.TYPES.TYPE_ID.eq(Tables.CARS.TYPE_ID))
-            .innerJoin(Tables.MARKS)
+            .innerJoin(Tables.MARKS) // тут действительно нужен inner join?
             .on(Tables.CARS.MARK_ID.eq(Tables.MARKS.MARK_ID))
-            .innerJoin(Tables.MODELS)
+            .innerJoin(Tables.MODELS) // тут действительно нужен inner join?
             .on(Tables.MARKS.MODEL_ID.eq(Tables.MODELS.MODEL_ID))
             .where(Tables.CARS.CAR_ID.eq(id))
             .fetchOneInto(CarDto::class.java)
@@ -47,7 +49,7 @@ class CarController(
             logger.log("Not found")
             return null
         }
-        KafkaControl.produceMessage(carStr.toString())
+        KafkaControl.produceMessage(carStr.toString()) //
         return carStr
 
     }
