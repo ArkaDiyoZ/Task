@@ -14,27 +14,24 @@ class CarDto(
      val modelSteeringWheel: String,
      val equipmentType: String,
      val typeName: String
-){
-
-
+) {
      override fun toString(): String {
           val strStart: StringBuilder = java.lang.StringBuilder("Cars (")
 
-          strStart.append(carId);
-          strStart.append(", ").append(carGosNum);
-          strStart.append(", ").append(markName);
-          strStart.append(", ").append(modelName);
-          strStart.append(", ").append(modelHp);
-          strStart.append(", ").append(modelEngineType);
-          strStart.append(", ").append(modelEngineVolume);
-          strStart.append(", ").append(modelTransmissionType);
-          strStart.append(", ").append(modelSteeringWheel);
-          strStart.append(", ").append(equipmentType);
-          strStart.append(", ").append(typeName);
+          strStart.append(carId)
+          .append(", ").append(carGosNum)
+          .append(", ").append(markName)
+          .append(", ").append(modelName)
+          .append(", ").append(modelHp)
+          .append(", ").append(modelEngineType)
+          .append(", ").append(modelEngineVolume)
+          .append(", ").append(modelTransmissionType)
+          .append(", ").append(modelSteeringWheel)
+          .append(", ").append(equipmentType)
+          .append(", ").append(typeName)
 
-
-          strStart.append(")");
-          return strStart.toString();
+          strStart.append(")")
+          return strStart.toString()
      }
 }
 

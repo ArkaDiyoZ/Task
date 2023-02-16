@@ -4,10 +4,10 @@ import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.stereotype.Service
 
 @Service
-class MessageConsumer {
+class KafkaConsumerService {
 
-    @KafkaListener(topics=["cars"], groupId = "test_id")
-    fun consume(message:String) :Unit {
+    @KafkaListener(topics=["cars"], groupId = "listeners_id")
+    private fun consume(message:String) :Unit {
         println(" message received from topic : $message");
     }
 }
